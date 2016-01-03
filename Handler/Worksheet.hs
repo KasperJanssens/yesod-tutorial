@@ -5,14 +5,37 @@ import Data.Time.LocalTime
 
 getWorksheetR :: Handler Html
 getWorksheetR = do
-  (formWidget, formEnctype) <- generateFormPost dateForm
+  ((_result, formWidget), formEnctype) <- runFormGet dateForm2
   defaultLayout $ do
-      aDomId <- newIdent
-      setTitle "Welcome To Worksheets!"
-      $(widgetFile "worksheet")
+    setTitle "Welcome To Worksheets!"
+    $(widgetFile "worksheet")
 
 postWorksheetR :: Handler Html
-postWorksheetR = undefined
+postWorksheetR = do
+  ((_result, formWidget), formEnctype) <- runFormPost dateForm2
+  defaultLayout $ do
+     setTitle "Welcome To Worksheets!"
+     $(widgetFile "worksheet")
+
+
+
+dateForm2 :: Html -> MForm Handler (FormResult (TimeOfDay,TimeOfDay), Widget)
+dateForm2 extra = do
+  (fromRes, fromView) <- mreq timeFieldTypeTime "Choose start time" Nothing
+  (toRes, toView) <- mreq timeFieldTypeTime "Choose end time" Nothing
+  let fromToRes = (,) <$> fromRes <*> toRes
+  let widget = do
+          toWidget [whamlet|
+              #{extra}
+              <p>
+                  #
+                  ^{fvInput fromView}
+                  \ #
+                  ^{fvInput toView}
+                  \ #
+                  <input type=submit value="Submit">
+          |]
+  return (fromToRes, widget)
 
 dateForm :: Form (TimeOfDay, TimeOfDay)
 dateForm = renderBootstrap3 BootstrapBasicForm $ (,)
