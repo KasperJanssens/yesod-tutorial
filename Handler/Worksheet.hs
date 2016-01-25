@@ -21,6 +21,7 @@ postWorksheetR = do
 
 dateForm2 :: Html -> MForm Handler (FormResult (TimeOfDay,TimeOfDay), Widget)
 dateForm2 extra = do
+  let companyComboBox = selectFieldList [("Hey", "Hey"); ("Yow", "Yow)"]
   (fromRes, fromView) <- mreq timeFieldTypeTime "Choose start time" Nothing
   (toRes, toView) <- mreq timeFieldTypeTime "Choose end time" Nothing
   let fromToRes = (,) <$> fromRes <*> toRes
@@ -32,8 +33,6 @@ dateForm2 extra = do
                   ^{fvInput fromView}
                   \ #
                   ^{fvInput toView}
-                  \ #
-                  <input type=submit value="Submit">
           |]
   return (fromToRes, widget)
 

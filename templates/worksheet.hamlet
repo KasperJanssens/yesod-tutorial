@@ -1,14 +1,16 @@
 <h1.jumbotron>
   Welcome to Worksheets!
 
-<.page-header><h2>Starting
+<.page-header><h2>Start logging!
 
 <section.page-header>
   <h2>Worksheets
 
   <div>
       <div .message .alert .alert-success>
-    <form method=post action=@{WorksheetR}#form enctype=#{formEnctype}>
-      ^{formWidget}
-      <button .btn .btn-primary type="submit">
-         Save <span class="glyphicon glyphicon-upload"></span>
+        <form method=post action=@{WorksheetR}#form enctype=#{formEnctype}>
+          ^{formWidget}
+          <button .btn .btn-primary type="submit">
+             Now <span class="glyphicon glyphicon-upload"></span>
+          <button .btn .btn-primary type="submit">
+             Earlier today <span class="glyphicon glyphicon-upload"></span>
