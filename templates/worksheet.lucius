@@ -1,0 +1,8 @@
+.btn {
+  background-color: red;
+  color: yellow;
+}
+
+html {
+  background-color: red !important;
+}

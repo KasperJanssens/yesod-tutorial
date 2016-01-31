@@ -8,9 +8,13 @@
 
   <div>
       <div .message .alert .alert-success>
-        <form method=post action=@{WorksheetR}#form enctype=#{formEnctype}>
-          ^{formWidget}
-          <button .btn .btn-primary type="submit">
-             Now <span class="glyphicon glyphicon-upload"></span>
-          <button .btn .btn-primary type="submit">
-             Earlier today <span class="glyphicon glyphicon-upload"></span>
+        $case selectFields
+            $of []
+              <p> de lijst is leeg
+            $of _
+              <form method=post action=@{WorksheetR}#form enctype=#{formEnctype}>
+               ^{formWidget}
+               <button .btn .btn-primary type="submit">
+                  Now
+               <button .btn .btn-primary type="submit">
+                  Earlier today <span class="glyphicon glyphicon-upload"></span>

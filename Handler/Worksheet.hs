@@ -1,7 +1,18 @@
 module Handler.Worksheet where
 import Import
+import Worksheet.Company
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Data.Time.LocalTime
+
+amplidata :: Company
+amplidata = Company "amplidata" "niks"
+
+
+selectFields:: [(Company, Company)]
+selectFields = [(amplidata,amplidata)]
+-- selectFields :: [(Text, Text)]
+-- selectFields = []
+-- selectFields = [("Value 1" :: Text, "value1"),("Value 2", "value2")]
 
 getWorksheetR :: Handler Html
 getWorksheetR = do
@@ -19,12 +30,13 @@ postWorksheetR = do
 
 
 
-dateForm2 :: Html -> MForm Handler (FormResult (TimeOfDay,TimeOfDay), Widget)
+dateForm2 :: Html -> MForm Handler (FormResult ((TimeOfDay,TimeOfDay), Company), Widget)
 dateForm2 extra = do
-  let companyComboBox = selectFieldList [("Hey", "Hey"); ("Yow", "Yow)"]
+  (comboRes, comboView) <- mreq (selectFieldList selectFields) "combo" Nothing
   (fromRes, fromView) <- mreq timeFieldTypeTime "Choose start time" Nothing
   (toRes, toView) <- mreq timeFieldTypeTime "Choose end time" Nothing
   let fromToRes = (,) <$> fromRes <*> toRes
+  let fromToComboRes = (,) <$> fromToRes <*> comboRes
   let widget = do
           toWidget [whamlet|
               #{extra}
@@ -33,8 +45,10 @@ dateForm2 extra = do
                   ^{fvInput fromView}
                   \ #
                   ^{fvInput toView}
+                  \ #
+                  ^{fvInput comboView}
           |]
-  return (fromToRes, widget)
+  return (fromToComboRes, widget)
 
 dateForm :: Form (TimeOfDay, TimeOfDay)
 dateForm = renderBootstrap3 BootstrapBasicForm $ (,)
