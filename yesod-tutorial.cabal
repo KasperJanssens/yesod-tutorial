@@ -56,11 +56,11 @@ library
                  , yesod-form                    >= 1.4.0      && < 1.5
                  , classy-prelude                >= 0.10.2
                  , classy-prelude-conduit        >= 0.10.2
+                 , persistent-postgresql         >= 2.1.1      && < 2.3
                  , classy-prelude-yesod          >= 0.10.2
                  , bytestring                    >= 0.9        && < 0.11
                  , text                          >= 0.11       && < 2.0
                  , persistent                    >= 2.0        && < 2.3
-                 , persistent-sqlite             >= 2.1.1      && < 2.3
                  , persistent-template           >= 2.0        && < 2.3
                  , template-haskell
                  , shakespeare                   >= 2.0        && < 2.1
@@ -85,6 +85,7 @@ library
                  , time
                  , case-insensitive
                  , wai
+
 
 executable         yesod-tutorial
     if flag(library-only)
