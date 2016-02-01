@@ -11,3 +11,14 @@ import Database.Persist.Quasi
 -- http://www.yesodweb.com/book/persistent/
 share [mkPersist sqlSettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
+
+-- TODO : meerdere persist files in één app, gaat dat (namespacing)?
+-- dependencies?
+
+instance Eq Company where
+--      (==) = undefined
+  (==) = (==) `on` companyName
+
+instance RenderMessage master Company where
+--      renderMessage _ _ = undefined
+  renderMessage _ _  = companyName

@@ -1,6 +1,5 @@
 module Handler.Worksheet where
 import Import
-import Worksheet.Company
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Data.Time.LocalTime
 
@@ -30,25 +29,22 @@ postWorksheetR = do
 
 
 
-dateForm2 :: Html -> MForm Handler (FormResult ((TimeOfDay,TimeOfDay), Company), Widget)
+-- dateForm2 :: Html -> MForm Handler (FormResult ((TimeOfDay,TimeOfDay), Company), Widget)
+dateForm2 :: Html -> MForm Handler ((FormResult Company), Widget)
 dateForm2 extra = do
   (comboRes, comboView) <- mreq (selectFieldList selectFields) "combo" Nothing
-  (fromRes, fromView) <- mreq timeFieldTypeTime "Choose start time" Nothing
-  (toRes, toView) <- mreq timeFieldTypeTime "Choose end time" Nothing
-  let fromToRes = (,) <$> fromRes <*> toRes
-  let fromToComboRes = (,) <$> fromToRes <*> comboRes
+--   (fromRes, fromView) <- mreq timeFieldTypeTime "Choose start time" Nothing
+--   (toRes, toView) <- mreq timeFieldTypeTime "Choose end time" Nothing
+--   let fromToRes = (,) <$> fromRes <*> toRes
+--   let fromToComboRes = (,) <$> fromToRes <*> comboRes
   let widget = do
           toWidget [whamlet|
               #{extra}
-              <p>
-                  #
-                  ^{fvInput fromView}
-                  \ #
-                  ^{fvInput toView}
+              <p> Today's work for
                   \ #
                   ^{fvInput comboView}
           |]
-  return (fromToComboRes, widget)
+  return (comboRes, widget)
 
 dateForm :: Form (TimeOfDay, TimeOfDay)
 dateForm = renderBootstrap3 BootstrapBasicForm $ (,)
