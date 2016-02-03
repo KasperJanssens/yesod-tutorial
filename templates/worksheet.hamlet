@@ -7,14 +7,23 @@
   <h2>Worksheets
 
   <div>
-      <div .message .alert .alert-success>
+      <div>
         $case selectFields
             $of []
               <p> de lijst is leeg
             $of _
-              <form method=post action=@{WorksheetR}#form enctype=#{formEnctype}>
-               ^{formWidget}
-               <button .btn .btn-primary type="submit">
+              <div .hoverToShow .floatLeft>
+                Today's
+                <form method=post action=@{WorksheetR}#form enctype=#{dateFormEnctype}>
+                 ^{dateFormWidget}
+              <div .floatLeft>
+                work for
+              <div .hoverToShow .floatLeft>
+                Amplidata
+                <form method=post action=@{WorksheetR}#form enctype=#{companyFormEnctype}>
+                 ^{companyFormWidget}
+
+              <button type="submit">
                   Now
-               <button .btn .btn-primary type="submit">
-                  Earlier today <span class="glyphicon glyphicon-upload"></span>
+              <button type="submit">
+                  Earlier today
