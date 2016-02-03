@@ -11,18 +11,20 @@ selectFields = [(amplidata,amplidata)]
 
 getWorksheetR :: Handler Html
 getWorksheetR = do
-  ((_result, dateFormWidget), dateFormEnctype) <- runFormGet dateForm
-  ((_result, companyFormWidget), companyFormEnctype) <- runFormGet companyForm
+  (dateFormWidget, dateFormEnctype) <- generateFormPost dateForm
+  (companyFormWidget, companyFormEnctype) <- generateFormPost companyForm
   defaultLayout $ do
-    setTitle "Welcome To Worksheets!"
+    setTitle "Welcome To Worksheets GETTED!"
     $(widgetFile "worksheet")
 
 postWorksheetR :: Handler Html
 postWorksheetR = do
-  ((_result, dateFormWidget), dateFormEnctype) <- runFormPost dateForm
-  ((_result, companyFormWidget), companyFormEnctype) <- runFormGet companyForm
+  ((dateResult, dateFormWidget), dateFormEnctype) <- runFormPostNoToken dateForm
+  ((companyResult, companyFormWidget), companyFormEnctype) <- runFormPostNoToken companyForm
+  print dateResult
+  print companyResult
   defaultLayout $ do
-     setTitle "Welcome To Worksheets!"
+     setTitle "Welcome To Worksheets POSTED!"
      $(widgetFile "worksheet")
 
 

@@ -20,5 +20,6 @@ Contract
 Company
     name Text
     vatNumber Text
+    deriving Show
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)

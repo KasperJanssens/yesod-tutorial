@@ -12,18 +12,17 @@
             $of []
               <p> de lijst is leeg
             $of _
-              <div .hoverToShow .floatLeft>
+              <div .hoverToShow>
                 Today's
                 <form method=post action=@{WorksheetR}#form enctype=#{dateFormEnctype}>
                  ^{dateFormWidget}
-              <div .floatLeft>
+              <div>
                 work for
-              <div .hoverToShow .floatLeft>
+              <div .hoverToShow>
                 Amplidata
                 <form method=post action=@{WorksheetR}#form enctype=#{companyFormEnctype}>
                  ^{companyFormWidget}
-
-              <button type="submit">
-                  Now
-              <button type="submit">
+              <button type="submit" form="dateForm">
+                      Now
+              <button type="submit" form="companyForm">
                   Earlier today

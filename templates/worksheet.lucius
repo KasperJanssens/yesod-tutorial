@@ -6,10 +6,6 @@
   visibility: visible;
 }
 
-.floatLeft{
-  float:left;
-}
-
 .container{
   overflow: hidden;
 }
