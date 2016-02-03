@@ -12,17 +12,17 @@
             $of []
               <p> de lijst is leeg
             $of _
-              <div .hoverToShow>
+              <form method=post action=@{InputR}#form>
+                <input type=hidden name="_token" value=#{token}>
+                <div .hoverToShow>
                 Today's
-                <form method=post action=@{WorksheetR}#form enctype=#{dateFormEnctype}>
-                 ^{dateFormWidget}
-              <div>
-                work for
-              <div .hoverToShow>
-                Amplidata
-                <form method=post action=@{WorksheetR}#form enctype=#{companyFormEnctype}>
-                 ^{companyFormWidget}
-              <button type="submit" form="dateForm">
-                      Now
-              <button type="submit" form="companyForm">
-                  Earlier today
+                   <input name="dateTimePicker"/>
+                <div>
+                  work for
+                <div .hoverToShow>
+                  Amplidata
+                     <input name="companyPicker"/>
+                  <button type="submit">
+                    Now
+                  <button type="submit">
+                    Earlier today
