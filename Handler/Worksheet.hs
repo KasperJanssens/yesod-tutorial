@@ -11,18 +11,22 @@ selectFields = [(amplidata,amplidata)]
 
 getWorksheetR :: Handler Html
 getWorksheetR = do
-  (dateFormWidget, dateFormEnctype) <- generateFormPost dateForm
-  (companyFormWidget, companyFormEnctype) <- generateFormPost companyForm
+--   (dateFormWidget, dateFormEnctype) <- generateFormPost dateForm
+--   (companyFormWidget, companyFormEnctype) <- generateFormPost companyForm
+  let companies = ["amplidata", "amplidataloss"] :: [Text]
+  let dates = ["yesterday", "day before yesterday"] :: [Text]
   defaultLayout $ do
     setTitle "Welcome To Worksheets GETTED!"
     $(widgetFile "worksheet")
 
 postWorksheetR :: Handler Html
 postWorksheetR = do
-  ((dateResult, dateFormWidget), dateFormEnctype) <- runFormPostNoToken dateForm
-  ((companyResult, companyFormWidget), companyFormEnctype) <- runFormPostNoToken companyForm
-  print dateResult
-  print companyResult
+--   ((dateResult, dateFormWidget), dateFormEnctype) <- runFormPostNoToken dateForm
+--   ((companyResult, companyFormWidget), companyFormEnctype) <- runFormPostNoToken companyForm
+  let companies = ["amplidata", "amplidataloss"] :: [Text]
+  let dates = ["yesterday", "day before yesterday"] :: [Text]
+--   print dateResult
+--   print companyResult
   defaultLayout $ do
      setTitle "Welcome To Worksheets POSTED!"
      $(widgetFile "worksheet")
@@ -33,4 +37,7 @@ companyForm = renderBootstrap3 BootstrapBasicForm $ areq (selectFieldList select
 
 dateForm :: Form  TimeOfDay
 dateForm = renderBootstrap3 BootstrapBasicForm $  areq timeFieldTypeTime "" Nothing
+
+dayPicker :: Field Handler Day
+dayPicker = dayField
 

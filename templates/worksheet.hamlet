@@ -13,15 +13,18 @@
               <p> de lijst is leeg
             $of _
               <div .hoverToShow>
-                Today's
-                <form method=post action=@{WorksheetR}#form enctype=#{dateFormEnctype}>
-                 ^{dateFormWidget}
-              <div>
+                <a href="#">today</a>
+                <div>
+                  <ul>
+                    $forall date <- dates
+                      <li>#{date}
                 work for
               <div .hoverToShow>
-                Amplidata
-                <form method=post action=@{WorksheetR}#form enctype=#{companyFormEnctype}>
-                 ^{companyFormWidget}
+                <a href="#">Amplidata
+                 <div>
+                   <ul>
+                     $forall company <- companies
+                       <li>#{company}
               <button type="submit" form="dateForm">
                       Now
               <button type="submit" form="companyForm">
