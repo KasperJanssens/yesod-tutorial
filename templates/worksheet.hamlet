@@ -12,20 +12,20 @@
             $of []
               <p> de lijst is leeg
             $of _
-              <div .hoverToShow>
-                <a href="#">today</a>
-                <div>
-                  <ul>
-                    $forall date <- dates
-                      <li>#{date}
-                work for
-              <div .hoverToShow>
-                <a href="#">Amplidata
-                 <div>
-                   <ul>
+              <form method=post action=@{InputR}#form>
+                <input type=hidden name="_token" value=#{token}>
+                <div .hoverToShow>
+                  <a href="#">today
+                    <div>
+                      <ul>
+                      $forall date <- dates
+                        <li>#{date}
+                  work for
+                <div .hoverToShow>
+                  <a href="#">Amplidata
+                   <div>
+                     <ul>
                      $forall company <- companies
-                       <li>#{company}
-              <button type="submit" form="dateForm">
-                      Now
-              <button type="submit" form="companyForm">
-                  Earlier today
+                         <li>#{company}
+                <button type="submit">
+                    Earlier today

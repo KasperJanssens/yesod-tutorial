@@ -1,11 +1,171 @@
+* {box-sizing: border-box;}
+
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: #e5e4e3;
+    color: black;
+    font-family: "Source Sans Pro","open sans", sans-serif;
+}
+
+ul {list-style: none;}
+
 .hoverToShow div {
   visibility: hidden;
+  /*opacity: 0;
+  position: absolute;*/
+  transition: 0.2s ease-out;
+  background-color: white;
+  border: 1px solid #efefef;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
 }
+
+#hoverToShow div::before,
+#hoverToShow div::after{
+    display: block;
+    content: ' ';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 10px;
+    border: 7px outset transparent;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main form{
+    margin-bottom: 10%;	/* we don't want total center */
+}
+
+main form .selectWorklog span a {
+    font-size: 20px;
+}
+
+
+
+
+  /* actions */
+main form .actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3em;
+}
+
+main form .actions input {
+    background-color: #4f9e97;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+main form .actions input:hover {
+   background-color: #00a19a;
+}
+
+
+#hoverToShow div::before{
+    border-bottom: 7px solid #ccc;
+    top: -15px;
+}
+
+#hoverToShow div::after{
+    border-bottom: 7px solid white;
+    top: -14px;
+}
+
+#hoverToShow:hover div{
+    visibility: visible;
+    opacity: 1;
+}
+
+#hoverToShow div {
+    width: 200px;
+}
+
+#hoverToShow div ul li {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#hoverToShow div ul li:first-child {
+    padding: 0;
+    position: relative;
+    height: 36px;
+}
+
+#hoverToShow div ul li:first-child input {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 1rem;
+}
+
+#hoverToShow div ul li:first-child input:focus {
+    z-index: 1;
+    position: absolute;
+}
+
+#hoverToShow div ul li:last-child {
+    border-bottom: none;
+}
+
+#hoverToShow div ul li:hover {
+   background-color: #00a19a;
+   color: white;
+}
+
+#hoverToShow div ul li:first-child:hover {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#hoverToShow div ul li:last-child:hover {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+
+
+
+
+
 
 .hoverToShow:hover div{
   visibility: visible;
 }
 
+#hoverToShow{
+  position: relative;
+}
+
 .container{
   overflow: hidden;
+}
+
+a{
+  color: #00a19a;
+  text-decoration: none;
+  border-bottom: 1px dashed #00a19a;
 }
