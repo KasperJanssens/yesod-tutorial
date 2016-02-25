@@ -15,17 +15,17 @@
               <form method=post action=@{InputR}#form>
                 <input type=hidden name="_token" value=#{token}>
                 <div .hoverToShow>
-                  <a href="#">today
+                  <a ##{listId} href="#">today
                     <div>
                       <ul>
-                      $forall date <- dates
-                        <li>#{date}
+                        $forall date <- dates
+                          <li>#{date}
                   work for
                 <div .hoverToShow>
                   <a href="#">Amplidata
                    <div>
                      <ul>
-                     $forall company <- companies
+                       $forall company <- companies
                          <li>#{company}
                 <button type="submit">
                     Earlier today

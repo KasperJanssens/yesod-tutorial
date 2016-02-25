@@ -1,6 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 module Handler.Worksheet where
 import Import
+import Text.Julius (RawJS (..))
 
 amplidata :: Company
 amplidata = Company "amplidata" "niks"
@@ -39,3 +40,5 @@ postInputR = do
 dayPicker :: Field Handler Day
 dayPicker = dayField
 
+listId :: Text
+listId = "js-koekoek-lijst"

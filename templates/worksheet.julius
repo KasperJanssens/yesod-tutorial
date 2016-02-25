@@ -1,0 +1,13 @@
+$(function() {
+    function klikkerdeklik (event) {
+            alert("G'het geklikt he maatje!");
+    }
+
+    $("##{rawJS listId}").click(klikkerdeklik);
+
+    listItems = $("##{rawJS listId}").childNodes;
+    for(var listItem in listItems) {
+        listItem.click(klikkerdeklik);
+    }
+
+});
