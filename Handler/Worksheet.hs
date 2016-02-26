@@ -20,6 +20,7 @@ getWorksheetR = do
               Just n -> n
   let companies = ["amplidata", "amplidataloss"] :: [Text]
   let dates = ["yesterday", "day before yesterday"] :: [Text]
+  let (listDateId, hrefDateId, listCompanyId, hrefCompanyId, formId, timeListId) = ids
   defaultLayout $ do
     setTitle "Welcome To Worksheets GETTED!"
     $(widgetFile "worksheet")
@@ -40,5 +41,5 @@ postInputR = do
 dayPicker :: Field Handler Day
 dayPicker = dayField
 
-listId :: Text
-listId = "js-koekoek-lijst"
+ids :: (Text, Text, Text, Text, Text, Text)
+ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "js-time-list-id")

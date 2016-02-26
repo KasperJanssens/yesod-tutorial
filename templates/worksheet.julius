@@ -1,13 +1,20 @@
 $(function() {
-    function klikkerdeklik (event) {
-            alert("G'het geklikt he maatje!");
+    function klikkerdeklik (id) {
+      return function (event) {
+            var liElementText = event.target.innerText;
+            href = $(id)[0];
+            href.innerText =liElementText;
+        }
     }
 
-    $("##{rawJS listId}").click(klikkerdeklik);
+    $("##{rawJS listDateId}").click(klikkerdeklik("##{rawJS hrefDateId}"));
 
-    listItems = $("##{rawJS listId}").childNodes;
-    for(var listItem in listItems) {
-        listItem.click(klikkerdeklik);
-    }
+    $("##{rawJS listCompanyId}").click(klikkerdeklik("##{rawJS hrefCompanyId}"));
+
+    $("##{rawJS formId}").submit(function(event) {
+        var newNode = $("<li></li>");
+        newNode.text("koekoek");
+        $("##{rawJS timeListId}").append(newNode);
+    });
 
 });
