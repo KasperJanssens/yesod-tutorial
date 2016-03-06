@@ -24,7 +24,7 @@ getWorksheetR = do
        hrefCompanyId, startLogging, selectWorklog, selectTime, selectCompany,
        timeListId) = ids
   defaultLayout $ do
-    setTitle "Welcome To Worksheets GETTED!"
+    setTitle "Welcome To Worksheets"
     $(widgetFile "worksheet")
 
 
@@ -45,6 +45,9 @@ postInputR = do
 
 dayPicker :: Field Handler Day
 dayPicker = dayField
+
+timePicker :: Field Handler TimeOfDay
+timePicker = timeFieldTypeText
 
 ids :: (Text, Text, Text, Text, Text, Text, Text, Text, Text)
 ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "selectTime",
