@@ -13,6 +13,11 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     userId UserId Maybe
     deriving Eq
     deriving Show
+Input json
+    date Text
+    company Text
+    deriving Eq
+    deriving Show
 Contract
     from Day
     to Day

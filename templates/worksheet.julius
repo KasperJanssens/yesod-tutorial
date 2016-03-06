@@ -11,12 +11,26 @@ $(function() {
 
     $("##{rawJS listCompanyId}").click(klikkerdeklik("##{rawJS hrefCompanyId}"));
 
-    $("##{rawJS formId}").submit(function(event) {
+    $("##{rawJS startLogging}").submit(function(event) {
         event.preventDefault();
         selectedDate = $("##{rawJS hrefDateId}")[0].innerText;
         selectedCompany = $("##{rawJS hrefCompanyId}")[0].innerText;
-        console.log(selectedDate);
-        console.log(selectedCompany);
+
+        $.ajax({
+          url: '@{InputR}',
+          type: 'POST',
+          contentType: "application/json",
+          data: JSON.stringify({
+            date: selectedDate,
+            company : selectedCompany
+          }),
+          success: function (data) {
+            console.log("success");
+          },
+          error: function (data) {
+            console.log("Error creating comment: " + data);
+          },
+        });
 
         var dateNode = "<div><a href='#'>" + selectedDate + "</a></div>";
         /*dateNode.innerText = selectedDate;*/

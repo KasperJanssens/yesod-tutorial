@@ -1,31 +1,26 @@
-<h1.jumbotron>
-  Welcome to Worksheets!
+<main role="main">
+  <h1>Start logging!
 
-<.page-header><h2>Start logging!
-
-<section.page-header>
-  <h2>Worksheets
-
-  <div>
-      <div>
-        $case selectFields
-            $of []
-              <p> de lijst is leeg
-            $of _
-              <form ##{formId} method=post action=@{InputR}#form>
-                <input type=hidden name="_token" value=#{token}>
-                <div .hoverToShowDate>
-                  <a ##{hrefDateId} href="#">today
-                  <div ##{listDateId}>
-                    <ul>
-                      $forall date <- dates
-                        <li>#{date}
-                  work for
-                <div .hoverToShowCompany>
-                  <a ##{hrefCompanyId} href="#">Amplidata
-                  <div ##{listCompanyId}>
-                    <ul>
-                      $forall company <- companies
-                        <li>#{company}
-                <button type="submit"> Add
-              <ul ##{timeListId}>
+  $case selectFields
+      $of []
+        <p> de lijst is leeg
+      $of _
+        <form ##{startLogging} method=post action=@{InputR}#form>
+          <input type=hidden name="_token" value=#{token}>
+          <div class=#{selectWorklog}>
+            <span ##{selectTime}>
+              <a ##{hrefDateId} href="#">today
+              <div ##{listDateId}>
+                <ul>
+                  $forall date <- dates
+                    <li>#{date}
+              work for
+            <span ##{selectCompany}>
+              <a ##{hrefCompanyId} href="#">Amplidata
+              <div ##{listCompanyId}>
+                <ul>
+                  $forall company <- companies
+                    <li>#{company}
+          <div class="actions">
+            <button type="submit"> Add
+        <ul ##{timeListId}>

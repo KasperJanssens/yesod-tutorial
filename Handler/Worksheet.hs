@@ -19,8 +19,10 @@ getWorksheetR = do
               Nothing -> "lebberlebber"
               Just n -> n
   let companies = ["amplidata", "amplidataloss"] :: [Text]
-  let dates = ["yesterday", "day before yesterday"] :: [Text]
-  let (listDateId, hrefDateId, listCompanyId, hrefCompanyId, formId, timeListId) = ids
+  let dates = ["today's", "yesterday's", "day before yesterday's"] :: [Text]
+  let (listDateId, hrefDateId, listCompanyId,
+       hrefCompanyId, startLogging, selectWorklog, selectTime, selectCompany,
+       timeListId) = ids
   defaultLayout $ do
     setTitle "Welcome To Worksheets GETTED!"
     $(widgetFile "worksheet")
@@ -33,6 +35,9 @@ postInputR = do
 --    company <- runInputPost $ ireq (selectFieldList selectFields) "companyPicker"
 --     let companies = ["amplidata", "amplidataloss"] :: [Text]
 --     let dates = ["yesterday", "day before yesterday"] :: [Text]
+    input <- (requireJsonBody :: Handler Input)
+    print $ inputDate input
+    print $ inputCompany input
     defaultLayout [whamlet|<p>koekoek
                            <p>merel
     |]
@@ -41,5 +46,6 @@ postInputR = do
 dayPicker :: Field Handler Day
 dayPicker = dayField
 
-ids :: (Text, Text, Text, Text, Text, Text)
-ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "js-time-list-id")
+ids :: (Text, Text, Text, Text, Text, Text, Text, Text, Text)
+ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "selectTime",
+       "selectCompany", "selectTime", "js-time-list-id")

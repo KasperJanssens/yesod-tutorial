@@ -1,254 +1,193 @@
-* {box-sizing: border-box;}
+/*  -------------------------------------------------------
+    General
+    -------------------------------------------------------  */
+    * {box-sizing: border-box;}
 
-html, body {
-    height: 100%;
-    min-height: 100%;
-}
+	html, body {
+		height: 100%;
+		min-height: 100%;
+	}
 
-body {
-    background-color: #e5e4e3;
-    color: black;
-    font-family: "Source Sans Pro","open sans", sans-serif;
-}
+    body {
+        background-color: #e5e4e3;
+        color: black;
+        font-family: "Source Sans Pro","open sans", sans-serif;
+    }
 
-ul {list-style: none;}
+    ul {list-style: none;}
+    a {
+		color: #00a19a;
+		text-decoration: none;
+		border-bottom: 1px dashed #00a19a;
+	}
 
-.hoverToShowDate div {
-  visibility: hidden;
-  /*opacity: 0;
-  position: absolute;*/
-  transition: 0.2s ease-out;
-  background-color: white;
-  border: 1px solid #efefef;
-  top: 100%;
-  left: 0;
-  right: 0;
-  border-radius: 5px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-}
+	h1 {
+		font-size: 2rem;
+		padding-bottom: 0.75em;
+	}
 
-.hoverToShowCompany div {
-  visibility: hidden;
-  /*opacity: 0;
-  position: absolute;*/
-  transition: 0.2s ease-out;
-  background-color: white;
-  border: 1px solid #efefef;
-  top: 100%;
-  left: 0;
-  right: 0;
-  border-radius: 5px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-}
+    .screen_reader {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
 
-#hoverToShowDate div::before,
-#hoverToShowDate div::after{
-    display: block;
-    content: ' ';
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 10px;
-    border: 7px outset transparent;
-}
-
-#hoverToShowCompany div::before,
-#hoverToShowCompany div::after{
-    display: block;
-    content: ' ';
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 10px;
-    border: 7px outset transparent;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100%;
-}
-
-main form{
-    margin-bottom: 10%;	/* we don't want total center */
-}
-
-main form .selectWorklog span a {
-    font-size: 20px;
-}
+    ::-webkit-input-placeholder {color: #bbb;}
+    :-moz-placeholder {color: #bbb;}
+    ::-moz-placeholder {color: #bbb;}
+    :-ms-input-placeholder {color: #bbb;}
 
 
-/* actions */
-main form .actions {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 3em;
-}
+/*  -------------------------------------------------------
+    Capsule (header + footer)
+    -------------------------------------------------------  */
+    header {
+    }
 
-main form .actions input {
-    background-color: #4f9e97;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    font-size: 1rem;
-}
 
-main form .actions input:hover {
-   background-color: #00a19a;
-}
+/*  -------------------------------------------------------
+    Main
+    -------------------------------------------------------  */
+    main {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		min-height: 100%;
+    }
 
-#hoverToShowDate div::before{
-    border-bottom: 7px solid #ccc;
-    top: -15px;
-}
+	main form##{startLogging} {
+		margin-bottom: 10%;	/* we don't want total center */
+	}
 
-#hoverToShowCompany div::before{
-    border-bottom: 7px solid #ccc;
-    top: -15px;
-}
+	main form##{startLogging} .selectWorklog span a {
+		font-size: 20px;
+	}
 
-#hoverToShowDate div::after{
-    border-bottom: 7px solid white;
-    top: -14px;
-}
-#hoverToShowCompany div::after{
-    border-bottom: 7px solid white;
-    top: -14px;
-}
+    /* hidden selection options */
+    ##{selectCompany}, ##{selectTime} {
+        position: relative;
+    }
 
-#hoverToShowDate:hover div{
-    visibility: visible;
-    opacity: 1;
-}
-#hoverToShowCompany:hover div{
-    visibility: visible;
-    opacity: 1;
-}
+    ##{selectCompany} div, ##{selectTime} div {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid #efefef;
+        transition: 0.2s ease-out;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+    }
 
-#hoverToShowDate div {
-    width: 200px;
-}
-#hoverToShowCompany div {
-    width: 200px;
-}
+    ##{selectCompany} div::before, ##{selectTime} div::before,
+    ##{selectCompany} div::after, ##{selectTime} div::after {
+        display: block;
+        content: ' ';
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 10px;
+        border: 7px outset transparent;
+    }
 
-#hoverToShowDate div ul li {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-}
-#hoverToShowCompany div ul li {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-}
+    ##{selectCompany} div::before, ##{selectTime} div::before {
+        border-bottom: 7px solid #ccc;
+        top: -15px;
+    }
 
-#hoverToShowDate div ul li:first-child {
-    padding: 0;
-    position: relative;
-    height: 36px;
-}
-#hoverToShowCompany div ul li:first-child {
-    padding: 0;
-    position: relative;
-    height: 36px;
-}
+    ##{selectCompany} div::after, ##{selectTime} div::after {
+        border-bottom: 7px solid white;
+        top: -14px;
+    }
 
-#hoverToShowDate div ul li:first-child input {
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 1rem;
-}
+    ##{selectCompany}:hover div, ##{selectTime}:hover div {
+        visibility: visible;
+        opacity: 1;
+    }
 
-#hoverToShowCompany div ul li:first-child input {
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 1rem;
-}
+    ##{selectCompany} div {
+        width: 200px;
+    }
 
-#hoverToShowDate div ul li:first-child input:focus {
-    z-index: 1;
-    position: absolute;
-}
-#hoverToShowCompany div ul li:first-child input:focus {
-    z-index: 1;
-    position: absolute;
-}
+    ##{selectCompany} div ul li {
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+    }
 
-#hoverToShowDate div ul li:last-child {
-    border-bottom: none;
-}
-#hoverToShowCompany div ul li:last-child {
-    border-bottom: none;
-}
+    ##{selectCompany} div ul li:first-child {
+        padding: 0;
+        position: relative;
+        height: 36px;
+    }
 
-#hoverToShowDate div ul li:hover {
-   background-color: #00a19a;
-   color: white;
-}
+    ##{selectCompany} div ul li:first-child input {
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 1rem;
+    }
 
-#hoverToShowCompany div ul li:hover {
-   background-color: #00a19a;
-   color: white;
-}
+    ##{selectCompany} div ul li:first-child input:focus {
+        z-index: 1;
+        position: absolute;
+    }
 
-#hoverToShowDate div ul li:first-child:hover {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
+    ##{selectCompany} div ul li:last-child {
+        border-bottom: none;
+    }
 
-#hoverToShowCompany div ul li:first-child:hover {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
+    ##{selectCompany} div ul li:hover {
+       background-color: #00a19a;
+       color: white;
+    }
 
-#hoverToShowDate div ul li:last-child:hover {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+    ##{selectCompany} div ul li:first-child:hover {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
 
-#hoverToShowCompany div ul li:last-child:hover {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+    ##{selectCompany} div ul li:last-child:hover {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 
-.hoverToShowDate:hover div{
-  visibility: visible;
-}
+    /* actions */
+	main form##{startLogging} .actions {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 3em;
+	}
 
-.hoverToShowCompany:hover div{
-  visibility: visible;
-}
+	main form##{startLogging} .actions input {
+		background-color: #4f9e97;
+		padding: 10px 20px;
+		border: none;
+		color: white;
+		border-radius: 5px;
+		font-size: 1rem;
+	}
 
-#hoverToShowDate{
-  position: relative;
-}
+    main form##{startLogging} .actions input:hover {
+       background-color: #00a19a;
+    }
 
-#hoverToShowCompany{
-  position: relative;
-}
 
-.container{
-  overflow: hidden;
-}
 
-a{
-  color: #00a19a;
-  text-decoration: none;
-  border-bottom: 1px dashed #00a19a;
-}
+/*  -------------------------------------------------------
+	Responsive layout
+	-------------------------------------------------------  */
+    @media all and (min-width: 600px) {
+    }
+
+    @media all and (min-width: 1000px) {
+	}
