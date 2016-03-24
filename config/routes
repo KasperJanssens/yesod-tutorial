@@ -11,3 +11,5 @@
 /worksheet WorksheetR GET
 
 /worksheetinput InputR POST
+
+/test TestR GET

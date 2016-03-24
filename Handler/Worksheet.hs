@@ -2,6 +2,7 @@
 module Handler.Worksheet where
 import Import
 import Text.Julius (RawJS (..))
+import Data.Time.LocalTime
 
 amplidata :: Company
 amplidata = Company "amplidata" "niks"
@@ -38,8 +39,8 @@ postInputR = do
     input <- (requireJsonBody :: Handler Input)
     print $ inputDate input
     print $ inputCompany input
-    defaultLayout [whamlet|<p>koekoek
-                           <p>merel
+    defaultLayout [whamlet|
+                            <li><input type='time'/></li>
     |]
 
 

@@ -44,3 +44,26 @@ sampleForm = renderBootstrap3 BootstrapBasicForm $ (,)
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
+
+
+textFieldList :: (RenderMessage site FormMessage) =>
+                  Field (HandlerT site IO) [Text]
+textFieldList = Field
+  {
+    fieldParse = \texts _ -> return $ Right . Just $ texts ,
+    fieldView = \theId name attrs val isReq ->
+      let zipUp = zip ([1..]::[Int]) in
+      [whamlet|
+      <ul>
+      $case val
+        $of Left errMsg
+          <li>
+            <input id=#{theId}-1 *{attrs} type=text name=#{name} value=#{errMsg} checked>
+        $of Right textVals
+          $forall (idPostFix, textVal) <- zipUp textVals
+            <li>
+              <input id=#{theId}-#{idPostFix} *{attrs} type=text name=#{name} value=#{textVal} checked>
+      |]
+    ,
+    fieldEnctype = UrlEncoded
+  }

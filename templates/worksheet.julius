@@ -25,27 +25,13 @@ $(function() {
             company : selectedCompany
           }),
           success: function (data) {
-            console.log("success");
+            $("##{rawJS timeListId}").append(data.message);
           },
           error: function (data) {
             console.log("Error creating comment: " + data);
           },
         });
 
-        var dateNode = "<div><a href='#'>" + selectedDate + "</a></div>";
-        /*dateNode.innerText = selectedDate;*/
-
-        var companyNode = "<div><a href='#'>" + selectedCompany + "</a></div>";
-        /*companyNode.innerText = selectedCompany;*/
-
-        var inputNode = "<div><input type='time'></div>";
-
-        var newNode = $("<li></li>");
-        newNode.append(inputNode);
-        newNode.append(companyNode);
-        newNode.append(dateNode);
-
-        $("##{rawJS timeListId}").append(newNode);
     });
 
 });
