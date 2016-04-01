@@ -12,4 +12,4 @@
 
 /worksheetinput InputR POST
 
-/test TestR GET
+/test TestR GET POST

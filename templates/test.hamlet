@@ -1,6 +1,6 @@
   <h1>Test
 
   <p>
-    <form ##{testFormId}>
+    <form method=post ##{testFormId}>
       ^{testFormWidget}
       <button type="submit">Send it!

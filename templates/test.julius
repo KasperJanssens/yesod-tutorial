@@ -1,0 +1,12 @@
+$(function() {
+    $("##{rawJS testFormId}").submit(function(event){
+        console.log("preventing default");
+        event.preventDefault();
+        var liElementText = event.target.innerText;
+        var newNode = $("<li></li>");
+        var inputText = "<input id=42 type=text checked>";
+        newNode.append(inputText);
+        $("##{rawJS ulId}").append(newNode);
+        return false;
+    });
+});
