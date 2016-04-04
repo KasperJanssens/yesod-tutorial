@@ -6,8 +6,9 @@ import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3,
 import Text.Julius (RawJS (..))
 
 testForm :: Form ([Text])
-testForm = renderBootstrap3 BootstrapBasicForm $
-   areq textFieldList "" Nothing
+testForm = renderBootstrap3 BootstrapBasicForm $ do
+   let fieldSettings = FieldSettings (fromString "") Nothing Nothing (Just "deNaam") []
+   areq textFieldList fieldSettings Nothing
 
 textFieldList :: (RenderMessage site FormMessage) =>
                   Field (HandlerT site IO) [Text]
@@ -22,18 +23,18 @@ textFieldList = Field
       <p> Dit is de lijst
       <button id="#{voegToe}"> voeg toe
       <ul id="#{ulId}">
-      $case val
-        $of Left errMsg
-          <li>
-            <input id=#{theId}-7 *{attrs} type=text name=#{name} value=#{errMsg} checked>
-          <li>
-            <input id=#{theId}-8 *{attrs} type=text name=#{name} value=#{errMsg} checked>
-          <li>
-            <input id=#{theId}-9 *{attrs} type=text name=#{name} value=#{errMsg} checked>
-        $of Right textVals
-          $forall (idPostFix, textVal) <- zipUp textVals
+        $case val
+          $of Left errMsg
             <li>
-              <input id=#{theId}-#{idPostFix} *{attrs} type=text name=#{name} value=#{textVal} checked>
+              <input id=#{theId}-7 *{attrs} type=text name=#{name} value=#{errMsg} checked>
+            <li>
+              <input id=#{theId}-8 *{attrs} type=text name=#{name} value=#{errMsg} checked>
+            <li>
+              <input id=#{theId}-9 *{attrs} type=text name=#{name} value=#{errMsg} checked>
+          $of Right textVals
+            $forall (idPostFix, textVal) <- zipUp textVals
+              <li>
+                <input id=#{theId}-#{idPostFix} *{attrs} type=text name=#{name} value=#{textVal} checked>
       |]
     ,
     fieldEnctype = UrlEncoded
