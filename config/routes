@@ -8,8 +8,10 @@
 
 /comments CommentR POST
 
-/worksheet WorksheetR GET
+/worksheet WorksheetR GET POST
 
 /worksheetinput InputR POST
 
 /test TestR GET POST
+
+/test2 Test2R GET POST

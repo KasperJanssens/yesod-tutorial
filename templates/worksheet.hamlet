@@ -5,7 +5,7 @@
       $of []
         <p> de lijst is leeg
       $of _
-        <form ##{startLogging} method=post action=@{InputR}#form>
+        <form ##{startLogging} method=post action=@{WorksheetR}#form>
           <input type=hidden name="_token" value=#{token}>
           <div class=#{selectWorklog}>
             <span ##{selectTime}>
@@ -14,7 +14,7 @@
                 <ul>
                   $forall date <- dates
                     <li>#{date}
-              work for
+            work for
             <span ##{selectCompany}>
               <a ##{hrefCompanyId} href="#">Amplidata
               <div ##{listCompanyId}>
@@ -22,5 +22,7 @@
                   $forall company <- companies
                     <li>#{company}
           <div class="actions">
-            <button type="submit"> Add
-        <ul ##{timeListId}>
+            <button ##{voegToe} type="submit"> Add
+          <ul ##{timeListId}>
+          <div class="actions">
+            <button type="submit"> Submit

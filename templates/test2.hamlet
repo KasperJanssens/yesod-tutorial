@@ -1,0 +1,8 @@
+<main role="main">
+  <h1>Start logging Test2!
+
+  <p>
+    <form method=post ##{startLogging}>
+      <div class=#{selectWorklog}>
+        ^{test2FormWidget}
+      <button type="submit">Send it!

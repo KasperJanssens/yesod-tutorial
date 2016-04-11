@@ -25,6 +25,7 @@ library
                      Handler.Worksheet
                      Handler.Comment
                      Handler.Test
+                     Handler.Test2
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

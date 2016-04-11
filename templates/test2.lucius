@@ -1,0 +1,193 @@
+/*  -------------------------------------------------------
+    General
+    -------------------------------------------------------  */
+    * {box-sizing: border-box;}
+
+	html, body {
+		height: 100%;
+		min-height: 100%;
+	}
+
+    body {
+        background-color: #e5e4e3;
+        color: black;
+        font-family: "Source Sans Pro","open sans", sans-serif;
+    }
+
+    ul {list-style: none;}
+    a {
+		color: #00a19a;
+		text-decoration: none;
+		border-bottom: 1px dashed #00a19a;
+	}
+
+	h1 {
+		font-size: 2rem;
+		padding-bottom: 0.75em;
+	}
+
+    .screen_reader {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    ::-webkit-input-placeholder {color: #bbb;}
+    :-moz-placeholder {color: #bbb;}
+    ::-moz-placeholder {color: #bbb;}
+    :-ms-input-placeholder {color: #bbb;}
+
+
+/*  -------------------------------------------------------
+    Capsule (header + footer)
+    -------------------------------------------------------  */
+    header {
+    }
+
+
+/*  -------------------------------------------------------
+    Main
+    -------------------------------------------------------  */
+    main {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		min-height: 100%;
+    }
+
+	main form##{startLogging} {
+		margin-bottom: 10%;	/* we don't want total center */
+	}
+
+	main form##{startLogging} .selectWorklog span a {
+		font-size: 20px;
+	}
+
+    /* hidden selection options */
+    ##{selectCompany}, ##{selectTime} {
+        position: relative;
+    }
+
+    ##{selectCompany} div, ##{selectTime} div {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid #efefef;
+        transition: 0.2s ease-out;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+    }
+
+    ##{selectCompany} div::before, ##{selectTime} div::before,
+    ##{selectCompany} div::after, ##{selectTime} div::after {
+        display: block;
+        content: ' ';
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 10px;
+        border: 7px outset transparent;
+    }
+
+    ##{selectCompany} div::before, ##{selectTime} div::before {
+        border-bottom: 7px solid #ccc;
+        top: -15px;
+    }
+
+    ##{selectCompany} div::after, ##{selectTime} div::after {
+        border-bottom: 7px solid white;
+        top: -14px;
+    }
+
+    ##{selectCompany}:hover div, ##{selectTime}:hover div {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ##{selectCompany} div {
+        width: 200px;
+    }
+
+    ##{selectCompany} div ul li {
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+    }
+
+    ##{selectCompany} div ul li:first-child {
+        padding: 0;
+        position: relative;
+        height: 36px;
+    }
+
+    ##{selectCompany} div ul li:first-child input {
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 1rem;
+    }
+
+    ##{selectCompany} div ul li:first-child input:focus {
+        z-index: 1;
+        position: absolute;
+    }
+
+    ##{selectCompany} div ul li:last-child {
+        border-bottom: none;
+    }
+
+    ##{selectCompany} div ul li:hover {
+       background-color: #00a19a;
+       color: white;
+    }
+
+    ##{selectCompany} div ul li:first-child:hover {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    ##{selectCompany} div ul li:last-child:hover {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    /* actions */
+	main form##{startLogging} .actions {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 3em;
+	}
+
+	main form##{startLogging} .actions input {
+		background-color: #4f9e97;
+		padding: 10px 20px;
+		border: none;
+		color: white;
+		border-radius: 5px;
+		font-size: 1rem;
+	}
+
+    main form##{startLogging} .actions input:hover {
+       background-color: #00a19a;
+    }
+
+
+
+/*  -------------------------------------------------------
+	Responsive layout
+	-------------------------------------------------------  */
+    @media all and (min-width: 600px) {
+    }
+
+    @media all and (min-width: 1000px) {
+	}

@@ -1,3 +1,5 @@
+console.log("loaded worksheet.julius")
+
 $(function() {
     function klikkerdeklik (id) {
       return function (event) {
@@ -11,7 +13,7 @@ $(function() {
 
     $("##{rawJS listCompanyId}").click(klikkerdeklik("##{rawJS hrefCompanyId}"));
 
-    $("##{rawJS startLogging}").submit(function(event) {
+    $("##{rawJS voegToe}").click(function(event) {
         event.preventDefault();
         selectedDate = $("##{rawJS hrefDateId}")[0].innerText;
         selectedCompany = $("##{rawJS hrefCompanyId}")[0].innerText;
@@ -25,7 +27,7 @@ $(function() {
             company : selectedCompany
           }),
           success: function (data) {
-            $("##{rawJS timeListId}").append(data.message);
+            $("##{rawJS timeListId}").append("<li><input type='time'/></li>");
           },
           error: function (data) {
             console.log("Error creating comment: " + data);

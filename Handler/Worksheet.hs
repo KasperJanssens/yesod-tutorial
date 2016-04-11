@@ -12,8 +12,6 @@ selectFields = [(amplidata,amplidata)]
 
 getWorksheetR :: Handler Html
 getWorksheetR = do
---   (dateFormWidget, dateFormEnctype) <- generateFormPost dateForm
---   (companyFormWidget, companyFormEnctype) <- generateFormPost companyForm
   req <- getRequest
   let token =
           case reqToken req of
@@ -23,25 +21,23 @@ getWorksheetR = do
   let dates = ["today's", "yesterday's", "day before yesterday's"] :: [Text]
   let (listDateId, hrefDateId, listCompanyId,
        hrefCompanyId, startLogging, selectWorklog, selectTime, selectCompany,
-       timeListId) = ids
+       timeListId, voegToe) = ids
   defaultLayout $ do
     setTitle "Welcome To Worksheets"
     $(widgetFile "worksheet")
 
 
+postWorksheetR :: Handler Value
+postWorksheetR = undefined
 
-postInputR :: Handler Html
+
+postInputR :: Handler Value
 postInputR = do
---    dateTime <- runInputPost $ ireq timeFieldTypeTime "dateTimePicker"
---    company <- runInputPost $ ireq (selectFieldList selectFields) "companyPicker"
---     let companies = ["amplidata", "amplidataloss"] :: [Text]
---     let dates = ["yesterday", "day before yesterday"] :: [Text]
-    input <- (requireJsonBody :: Handler Input)
-    print $ inputDate input
-    print $ inputCompany input
-    defaultLayout [whamlet|
-                            <li><input type='time'/></li>
-    |]
+    _input <- requireJsonBody :: Handler Input
+    zonedTime <- liftIO getZonedTime
+    let _zonedDay = localDay . zonedTimeToLocalTime $ zonedTime
+    returnJson ("<li><input type='time'/></li>"::Text)
+
 
 
 dayPicker :: Field Handler Day
@@ -50,6 +46,6 @@ dayPicker = dayField
 timePicker :: Field Handler TimeOfDay
 timePicker = timeFieldTypeText
 
-ids :: (Text, Text, Text, Text, Text, Text, Text, Text, Text)
-ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "selectTime",
-       "selectCompany", "selectTime", "js-time-list-id")
+ids :: (Text, Text, Text, Text, Text, Text, Text, Text, Text, Text)
+ids = ("js-date-lis","js-date-a", "js-company-lis", "js-company-a", "js-form-id", "selectWorklog",
+       "selectTime", "selectCompany", "js-time-list-id", "voeg-toe")
