@@ -1,0 +1,15 @@
+console.log('test2.juliusl oaded')
+$(function() {
+    function klikkerdeklik (id) {
+      console.log('in klikkerdeklik')
+      return function (event) {
+            console.log('going to get innertext')
+            var liElementText = event.target.innerText;
+            href = $(id)[0];
+            href.innerText =liElementText;
+        }
+    }
+
+    $("##{rawJS listDateId}").click(klikkerdeklik("##{rawJS hrefDateId}"));
+})
+

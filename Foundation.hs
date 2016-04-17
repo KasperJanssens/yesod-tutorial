@@ -11,6 +11,7 @@ import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import qualified Data.CaseInsensitive as CI
 import qualified Data.Text.Encoding as TE
+import Yesod.Fay
 
 -- | The foundation datatype for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -22,6 +23,7 @@ data App = App
     , appConnPool    :: ConnectionPool -- ^ Database connection pool.
     , appHttpManager :: Manager
     , appLogger      :: Logger
+    , appFayCommandHandler :: CommandHandler App
     }
 
 -- This is where we define all of the routes in our application. For a full
@@ -117,6 +119,15 @@ instance Yesod App where
             || level == LevelError
 
     makeLogger = return . appLogger
+
+instance YesodJquery App
+instance YesodFay App where
+
+    fayRoute = FaySiteR
+
+    yesodFayCommand render command = do
+        master <- getYesod
+        appFayCommandHandler master render command
 
 -- How to run database actions.
 instance YesodPersist App where

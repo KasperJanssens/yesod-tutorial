@@ -6,15 +6,15 @@ import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3,
 import qualified Handler.Worksheet as Worksheet
 import Text.Julius (RawJS (..))
 
-
+generateNames:: Text ->(Text,Text)
+generateNames =  (++ "Href") &&& (++ "ListDate")
 
 specialSelector :: (RenderMessage site FormMessage) =>
                      [Text] -> Field (HandlerT site IO) [Text]
 specialSelector dates = Field
   { fieldParse = \texts _ -> return $ Right . Just $ texts,
     fieldView = \selectId name _attrs _val _isReq ->
-      let hrefDateId = selectId ++ "Href" in
-      let listDateId = selectId ++ "ListDate" in
+      let (hrefDateId, listDateId) = generateNames selectId in
       [whamlet|
       <span ##{selectId}>
           <a ##{hrefDateId} href="#" name=#{name}>today
@@ -27,21 +27,22 @@ specialSelector dates = Field
 
 }
 
-test2Form :: Form ([Text])
-test2Form = renderBootstrap3 BootstrapBasicForm $ do
-   let fieldSettings = FieldSettings (fromString "") Nothing (Just "selectCompany") (Just "deNaam") []
+test2Form :: Text -> Form ([Text])
+test2Form selectDate = renderBootstrap3 BootstrapBasicForm $ do
+   let fieldSettings = FieldSettings (fromString "") Nothing (Just selectDate) (Just "deNaam") []
    areq (specialSelector ["koekoek", "merel"]) fieldSettings Nothing
 
 test2FormId :: Text
 test2FormId = "testFormId"
 
-(listDateId, hrefDateId, listCompanyId,
+(_, _, listCompanyId,
              hrefCompanyId, startLogging, selectWorklog, selectTime, selectCompany,
              timeListId, voegToe) = Worksheet.ids
 
 getTest2R :: Handler Html
 getTest2R = do
-  (test2FormWidget, _formEnctype) <- generateFormPost test2Form
+  let (hrefDateId, listDateId) = generateNames selectTime
+  (test2FormWidget, _formEnctype) <- generateFormPost $ test2Form selectTime
   defaultLayout $ do
     setTitle "Welcome To Yesod!"
     $(widgetFile "test2")
@@ -50,7 +51,8 @@ getTest2R = do
 
 postTest2R :: Handler Html
 postTest2R = do
-  ((result, test2FormWidget), _formEnctype) <- runFormPost test2Form
+  let (hrefDateId, listDateId) = generateNames selectTime
+  ((result, test2FormWidget), _formEnctype) <- runFormPost $ test2Form selectTime
   let tekst = case result of
                   FormSuccess s -> s
                   _ -> (["failure"] :: [Text])
